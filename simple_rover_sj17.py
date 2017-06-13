@@ -62,8 +62,8 @@ IMAGING_CONFIG = {
 }
 
 if ROVER_HOSTNAME == 'rover5':
-    MOBILITY_SYSTEM_CONFIG['initial_duty_cycle']['duty_cycle_left'] = 65.0
-    MOBILITY_SYSTEM_CONFIG['initial_duty_cycle']['duty_cycle_right'] = 75.0
+    MOBILITY_SYSTEM_CONFIG['initial_duty_cycle']['duty_cycle_left'] = 70.0
+    MOBILITY_SYSTEM_CONFIG['initial_duty_cycle']['duty_cycle_right'] = 80.0
     LANCE_CONFIG['duty_cycle_open'] = 11.8
     LANCE_CONFIG['duty_cycle_closed'] = 2.7
 
