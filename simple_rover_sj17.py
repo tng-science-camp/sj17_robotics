@@ -1,8 +1,16 @@
 import logging
-import time
-import picamera
+import sys
+import math
 import socket
 from rpibotics.rover_sj17 import Rover
+
+# root = logging.getLogger()
+# root.setLevel(logging.DEBUG)
+# ch = logging.StreamHandler(sys.stdout)
+# ch.setLevel(logging.DEBUG)
+#formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+#ch.setFormatter(formatter)
+# root.addHandler(ch)
 
 ROVER_HOSTNAME = socket.gethostname()
 
@@ -54,6 +62,8 @@ IMAGING_CONFIG = {
 }
 
 if ROVER_HOSTNAME == 'rover5':
+    MOBILITY_SYSTEM_CONFIG['initial_duty_cycle'] = \
+        {'duty_cycle_left' : 65.0, 'duty_cycle_right': 75.0},
     LANCE_CONFIG['duty_cycle_open'] = 11.8
     LANCE_CONFIG['duty_cycle_closed'] = 2.7
 
@@ -63,6 +73,8 @@ MY_ROVER = Rover(mobility_system_config=MOBILITY_SYSTEM_CONFIG,
                  lance_config=LANCE_CONFIG,
                  imaging_config=IMAGING_CONFIG)
 
+def stop():
+    MY_ROVER.mob.stop()
 
 def forward(target_distance=0.3):
     MY_ROVER.mob.go_forward(target_distance=target_distance)
@@ -85,20 +97,20 @@ def isblocked():
 
 
 def temperature():
-    return MY_ROVER.dht.measure_temperature()
+    return round(MY_ROVER.dht.measure_temperature(), 1)
 
 
 def humidity():
-    return MY_ROVER.dht.measure_humidity()
+    return round(MY_ROVER.dht.measure_humidity(), 1)
 
 
 def heading():
-    return MY_ROVER.mag.get_heading()
+    return round(math.degrees(MY_ROVER.mag.get_heading()), 1)
 
 
 def zmag():
     x, y, z = MY_ROVER.mag.get_data()
-    return z
+    return round(z, 1)
 
 
 def arm():
