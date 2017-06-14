@@ -17,3 +17,4 @@ from simple_rover_sj_17 import *
 # zmag()        # returns the magnitude of magnetic field in the z-direction
 # arm()         # arms the lance
 # disarm()      # disarms the lance
+# image()       # takes an image and saves it to /var/www/html/rover_img/.

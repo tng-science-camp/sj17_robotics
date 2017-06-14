@@ -8,8 +8,8 @@ from rpibotics.rover_sj17 import Rover
 # root.setLevel(logging.DEBUG)
 # ch = logging.StreamHandler(sys.stdout)
 # ch.setLevel(logging.DEBUG)
-#formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-#ch.setFormatter(formatter)
+# formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+# ch.setFormatter(formatter)
 # root.addHandler(ch)
 
 ROVER_HOSTNAME = socket.gethostname()
@@ -37,7 +37,7 @@ MOBILITY_SYSTEM_CONFIG = {
     'initial_duty_cycle'   : {'duty_cycle_left' : 70.0,
                               'duty_cycle_right': 70.0},
     'wheel_diameter'       : 0.065,
-    'wheel_distance'       : 0.08
+    'wheel_distance'       : 0.08276
 }
 
 DHT_SENSOR_CONFIG = {
@@ -64,6 +64,7 @@ IMAGING_CONFIG = {
 if ROVER_HOSTNAME == 'rover5':
     MOBILITY_SYSTEM_CONFIG['initial_duty_cycle']['duty_cycle_left'] = 70.0
     MOBILITY_SYSTEM_CONFIG['initial_duty_cycle']['duty_cycle_right'] = 80.0
+    MOBILITY_SYSTEM_CONFIG['wheel_distance'] = 0.08276
     LANCE_CONFIG['duty_cycle_open'] = 11.8
     LANCE_CONFIG['duty_cycle_closed'] = 2.7
 
@@ -73,8 +74,10 @@ MY_ROVER = Rover(mobility_system_config=MOBILITY_SYSTEM_CONFIG,
                  lance_config=LANCE_CONFIG,
                  imaging_config=IMAGING_CONFIG)
 
+
 def stop():
     MY_ROVER.mob.stop()
+
 
 def forward(target_distance=0.3):
     MY_ROVER.mob.go_forward(target_distance=target_distance)
@@ -119,3 +122,7 @@ def arm():
 
 def disarm():
     MY_ROVER.lance.disarm()
+
+
+def image():
+    MY_ROVER.capture_image()
