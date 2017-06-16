@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from simple_rover_sj_17 import *
+from simple_rover_sj17 import *
 
 # stop()        # stop
 # forward()     # go forward 0.3 meters
