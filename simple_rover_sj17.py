@@ -63,9 +63,9 @@ IMAGING_CONFIG = {
 }
 
 if ROVER_HOSTNAME == 'rover1':
-    MOBILITY_SYSTEM_CONFIG['initial_duty_cycle']['duty_cycle_left'] = 70.0
-    MOBILITY_SYSTEM_CONFIG['initial_duty_cycle']['duty_cycle_right'] = 80.0
-    MOBILITY_SYSTEM_CONFIG['wheel_distance'] = 0.08276
+    MOBILITY_SYSTEM_CONFIG['initial_duty_cycle']['duty_cycle_left'] = 100.0
+    MOBILITY_SYSTEM_CONFIG['initial_duty_cycle']['duty_cycle_right'] = 100.0
+    MOBILITY_SYSTEM_CONFIG['wheel_distance'] = 0.1337
     LANCE_CONFIG['duty_cycle_open'] = 13.0
     LANCE_CONFIG['duty_cycle_closed'] = 2.9
 elif ROVER_HOSTNAME == 'rover2':
@@ -74,18 +74,30 @@ elif ROVER_HOSTNAME == 'rover2':
     MOBILITY_SYSTEM_CONFIG['wheel_distance'] = 0.1337
     LANCE_CONFIG['duty_cycle_open'] = 13.4
     LANCE_CONFIG['duty_cycle_closed'] = 3.2
-elif ROVER_HOSTNAME == 'rover3':
+elif ROVER_HOSTNAME == 'rover3':  # Seems to be broken
     MOBILITY_SYSTEM_CONFIG['initial_duty_cycle']['duty_cycle_left'] = 100.0
     MOBILITY_SYSTEM_CONFIG['initial_duty_cycle']['duty_cycle_right'] = 100.0
     MOBILITY_SYSTEM_CONFIG['wheel_distance'] = 0.1337
     LANCE_CONFIG['duty_cycle_open'] = 2.6
     LANCE_CONFIG['duty_cycle_closed'] = 12.3
+elif ROVER_HOSTNAME == 'rover4':
+    MOBILITY_SYSTEM_CONFIG['initial_duty_cycle']['duty_cycle_left'] = 100.0
+    MOBILITY_SYSTEM_CONFIG['initial_duty_cycle']['duty_cycle_right'] = 100.0
+    MOBILITY_SYSTEM_CONFIG['wheel_distance'] = 00.1337
+    LANCE_CONFIG['duty_cycle_open'] = 3.0
+    LANCE_CONFIG['duty_cycle_closed'] = 12.0
 elif ROVER_HOSTNAME == 'rover5':
-    MOBILITY_SYSTEM_CONFIG['initial_duty_cycle']['duty_cycle_left'] = 70.0
-    MOBILITY_SYSTEM_CONFIG['initial_duty_cycle']['duty_cycle_right'] = 80.0
-    MOBILITY_SYSTEM_CONFIG['wheel_distance'] = 0.08276
+    MOBILITY_SYSTEM_CONFIG['initial_duty_cycle']['duty_cycle_left'] = 100.0
+    MOBILITY_SYSTEM_CONFIG['initial_duty_cycle']['duty_cycle_right'] = 100.0
+    MOBILITY_SYSTEM_CONFIG['wheel_distance'] = 0.1337
     LANCE_CONFIG['duty_cycle_open'] = 11.8
     LANCE_CONFIG['duty_cycle_closed'] = 2.7
+elif ROVER_HOSTNAME == 'rover6':
+    MOBILITY_SYSTEM_CONFIG['initial_duty_cycle']['duty_cycle_left'] = 100.0
+    MOBILITY_SYSTEM_CONFIG['initial_duty_cycle']['duty_cycle_right'] = 100.0
+    MOBILITY_SYSTEM_CONFIG['wheel_distance'] = 0.1337
+    LANCE_CONFIG['duty_cycle_open'] = 12.0
+    LANCE_CONFIG['duty_cycle_closed'] = 2.5
 
 MY_ROVER = Rover(mobility_system_config=MOBILITY_SYSTEM_CONFIG,
                  dht_sensor_config=DHT_SENSOR_CONFIG,
