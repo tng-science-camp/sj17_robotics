@@ -160,5 +160,6 @@ def disarm():
 def image():
     print('Capturing image... ')
     i = MY_ROVER.capture_image()
-    print('done http://{}/rover_img/{}'.format(ROVER_HOSTNAME, i))
+    print('done http://{}/rover_img/{}'.format(
+        ROVER_HOSTNAME, i.replace(IMAGING_CONFIG['path'], '')))
     return i
