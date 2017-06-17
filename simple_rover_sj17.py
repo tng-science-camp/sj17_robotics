@@ -3,6 +3,7 @@ import sys
 import math
 import socket
 from rpibotics.rover_sj17 import Rover
+from rpibotics.hmc5983 import convert_radians_to_degrees_minutes
 
 # root = logging.getLogger()
 # root.setLevel(logging.DEBUG)
@@ -76,53 +77,88 @@ MY_ROVER = Rover(mobility_system_config=MOBILITY_SYSTEM_CONFIG,
 
 
 def stop():
+    print('Stopping... ', end='')
     MY_ROVER.mob.stop()
+    print('done')
 
 
 def forward(target_distance=0.3):
+    print('Driving forward... ', end='')
     MY_ROVER.mob.go_forward(target_distance=target_distance)
+    print('done')
 
 
 def backward(target_distance=0.3):
+    print('Driving backward... ', end='')
     MY_ROVER.mob.go_backward(target_distance=target_distance)
+    print('done')
 
 
 def right(target_angle=90.0):
+    print('Turning right... ', end='')
     MY_ROVER.mob.turn_right(target_angle=target_angle)
+    print('done')
 
 
 def left(target_angle=90.0):
+    print('Turning left... ', end='')
     MY_ROVER.mob.turn_left(target_angle=target_angle)
+    print('done')
 
 
 def isblocked():
-    return MY_ROVER.mob.front_is_blocked()
+    print('Checking if front is blocked... ', end='')
+    front_is_blocked = MY_ROVER.mob.front_is_blocked()
+    if front_is_blocked:
+        print('yes')
+    else:
+        print('no')
+    return front_is_blocked
 
 
 def temperature():
-    return round(MY_ROVER.dht.measure_temperature(), 1)
+    print('Measuring temperature... ', end='')
+    t = round(MY_ROVER.dht.measure_temperature(), 1)
+    print('{0:.1f}\N{DEGREE SIGN}C'.format(t))
+    return t
 
 
 def humidity():
-    return round(MY_ROVER.dht.measure_humidity(), 1)
+    print('Measuring humidity... ', end='')
+    h = round(MY_ROVER.dht.measure_humidity(), 1)
+    print('{0:.1f}%'.format(h))
+    return h
 
 
 def heading():
-    return round(math.degrees(MY_ROVER.mag.get_heading()), 1)
+    print('Measuring heading... ', end='')
+    h = math.degrees(MY_ROVER.mag.get_heading())
+    d, m = convert_radians_to_degrees_minutes(h)
+    print('{:d}\N{DEGREE SIGN} {:d}\''.format(d, m))
+    return d, m
 
 
 def zmag():
+    print('Measuring magnetic flux in z direction... ', end='')
     x, y, z = MY_ROVER.mag.get_data()
+    print('{0:.1f}% Gs'.format(z))
     return round(z, 1)
 
 
 def arm():
+    print('Arming lance... ', end='')
     MY_ROVER.lance.arm()
+    print('done')
 
 
 def disarm():
+    print('Disarming lance... ', end='')
     MY_ROVER.lance.disarm()
+    print('done')
 
 
 def image():
-    MY_ROVER.capture_image()
+    print('Capturing image... ')
+    i = MY_ROVER.capture_image()
+    print('done http://{}/rover_img/{}'.format(ROVER_HOSTNAME, i))
+    return i
