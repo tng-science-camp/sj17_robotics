@@ -68,6 +68,12 @@ if ROVER_HOSTNAME == 'rover1':
     MOBILITY_SYSTEM_CONFIG['wheel_distance'] = 0.08276
     LANCE_CONFIG['duty_cycle_open'] = 13.0
     LANCE_CONFIG['duty_cycle_closed'] = 2.9
+elif ROVER_HOSTNAME == 'rover2':
+    MOBILITY_SYSTEM_CONFIG['initial_duty_cycle']['duty_cycle_left'] = 70.0
+    MOBILITY_SYSTEM_CONFIG['initial_duty_cycle']['duty_cycle_right'] = 80.0
+    MOBILITY_SYSTEM_CONFIG['wheel_distance'] = 0.08276
+    LANCE_CONFIG['duty_cycle_open'] = 13.4
+    LANCE_CONFIG['duty_cycle_closed'] = 3.2
 elif ROVER_HOSTNAME == 'rover5':
     MOBILITY_SYSTEM_CONFIG['initial_duty_cycle']['duty_cycle_left'] = 70.0
     MOBILITY_SYSTEM_CONFIG['initial_duty_cycle']['duty_cycle_right'] = 80.0
